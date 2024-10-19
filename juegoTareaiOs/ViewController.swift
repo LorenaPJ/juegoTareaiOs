@@ -13,7 +13,18 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
-
+/*
+    Timer.scheduledTimer(withTimeInterval: 3, repeats: true){(timer) in
+        print("Hola")}
+ */
+    @IBAction func playButton(_ sender: Any) {
+    }
+    
+    @IBAction func infoButton(_ sender: Any) {
+    }
+    
+    @IBAction func rankingButton(_ sender: Any) {
+    }
+    
 }
 
