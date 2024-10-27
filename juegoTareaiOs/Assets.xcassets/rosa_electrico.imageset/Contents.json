@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "38fffa7e5b6ffbbe5467c0482c0bcc22.jpg",
+      "filename" : "rosa_electrico.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "rosa_electrico 1.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "rosa_electrico 2.jpg",
       "idiom" : "universal",
       "scale" : "3x"
     }

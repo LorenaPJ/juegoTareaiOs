@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "raf,360x360,075,t,fafafa_ca443f4786.u1.jpg",
+      "filename" : "rojo.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "rojo 1.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "rojo 2.jpg",
       "idiom" : "universal",
       "scale" : "3x"
     }

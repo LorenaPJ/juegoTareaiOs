@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "3b47fbe1bd6074a32f6cf22712b8cd85.png",
+      "filename" : "mulberry.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "mulberry 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "mulberry 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

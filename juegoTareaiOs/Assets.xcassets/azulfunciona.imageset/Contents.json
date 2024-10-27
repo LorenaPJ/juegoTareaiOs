@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "darkicon.png",
+      "filename" : "azulfunciona.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "azulfunciona 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "azulfunciona 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

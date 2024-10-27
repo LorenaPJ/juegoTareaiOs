@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "f74fe4dbf6a9d3523facb10f76a80f96.jpg",
+      "filename" : "naranja.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "naranja 1.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "naranja 2.jpg",
       "idiom" : "universal",
       "scale" : "3x"
     }

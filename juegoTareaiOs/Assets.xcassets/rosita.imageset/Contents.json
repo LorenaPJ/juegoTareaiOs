@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "pantone-color-of-the-year-podcast-2021-department.png",
+      "filename" : "rosita.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "rosita 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "rosita 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

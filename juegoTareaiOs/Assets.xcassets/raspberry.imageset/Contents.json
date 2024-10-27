@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "8693ad8babb660d70cccdea0dc162a71.jpg",
+      "filename" : "raspberry.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "raspberry 1.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "raspberry 2.jpg",
       "idiom" : "universal",
       "scale" : "3x"
     }
