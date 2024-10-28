@@ -7,37 +7,44 @@
 import UIKit
 
 class gamescreen: UIViewController {
-    /*
-     var countDownTimer = 3
-     var timerRunning = false
     
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
-    var body: some View {
-        VStack {
-            Text("\(countDownTimer)")
-                .onReceive(timer) { _ in
-                    if self.countDownTimer > 0 && self.timerRunning{
-                        self.countDownTimer -= 1
-                    } else {
-                        self.timerRunning = false
-                    }
-                }
-                .font(.system(size: 80 , weight: .bold))
-                .opacity(0.80)
-        }
-    } */
-    
+    // Tu UIImageView llamado changingImage
     @IBOutlet weak var changingImage: UIImageView!
+
+    // Array de imágenes
+    let imagenes = ["amarillo", "azul", "degradado", "rosado", "rojo", "verde","ultima"]
+    var currentIndex = 0
+    var timer: Timer?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.changingImage.image = UIImage(named: "flamingo")
+        // Iniciar el temporizador
+        startImageTimer()
     }
-   
-    
-    /*
-        Timer.scheduledTimer(withTimeInterval: 3, repeats: true){(timer) in
-            print("Hola")}
-     */
+
+    func startImageTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(changeImage), userInfo: nil, repeats: true)
+    }
+
+    @objc func changeImage() {
+        // Cambiar la imagen en changingImage
+        changingImage.image = UIImage(named: imagenes[currentIndex])
+        
+        // Incrementar el índice
+        currentIndex += 1
+        
+        // Verificar si hemos alcanzado el final del array
+        if currentIndex >= imagenes.count {
+            // Invalidar el temporizador y reiniciar el índice
+            timer?.invalidate()
+            timer = nil
+            currentIndex = 0
+        }
+    }
+
+    deinit {
+        // Invalidar el temporizador cuando la vista se deallocate
+        timer?.invalidate()
+    }
 }
