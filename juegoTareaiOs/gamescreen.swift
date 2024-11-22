@@ -6,80 +6,64 @@
 //
 import UIKit
 
-//Array de imagenes que muestra la app.
-var shownImages : [String] = []
+// Array de imágenes que muestra la app, hecho global.
+var shownImages: [String] = []
 
 class gamescreen: UIViewController {
     
-    // Imagen del UI que cambia
+  
+    
     @IBOutlet weak var changingImage: UIImageView!
 
-    // Array de imágenes totales.
     var imagenes = ["amarillo", "azul", "degradado",
-                    "azulclaro","morado","naranja",
+                    "azulclaro", "morado", "naranja",
                     "verdeclaro", "rosado", "rojo",
                     "verde"]
-    
-    
-    
-    //variable para ver en q imagen estamos.
     var currentIndex = 0
-    
-    //variable para nuestro temporizador
     var timer: Timer?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Seleccionar 5 imagenes random.
+        // Selecciona 6 imágenes aleatorias.
         selectRandomImages()
-        // Iniciar el temporizador
+        
+        // Iniciar el temporizador para el cambio de imágenes.
         startImageTimer()
     }
-    
     /*
-     Se seleccionan 5 imagenes random de nuestro array de imagenes.
-     Las imagenes seleccionadas se almacenan en un array nuevo 'shownImages'.
+     Usamos un random para escoger 5 imagenes y meterlas en nuestro array de imagenes mostradas.
      */
     func selectRandomImages() {
+        var availableIndices = Array(0..<imagenes.count)
+        shownImages = [] // Limpiar el array
         
-        //imagenes únicas seleccionadas
-        var selectedIndices: Set<Int> = []
-        
-        //se asegura de que sean solo 5 imagenes seleccionadas
-        while selectedIndices.count < 6 {
-            let randomIndex = Int.random(in: 0..<imagenes.count)
-            selectedIndices.insert(randomIndex)
+        for _ in 0..<6 {
+            let randomIndex = Int.random(in: 0..<availableIndices.count)
+            let selectedIndex = availableIndices.remove(at: randomIndex)
+            shownImages.append(imagenes[selectedIndex])
         }
         
-        shownImages = selectedIndices.map { imagenes[$0] }
+        print("Imágenes seleccionadas para el slideshow: \(shownImages)") //Comprobación de que se lleno el array.
     }
-    
     /*
-     Timer para que nuestras imagenes aparezcan en secuencia cada
-     2 segundos.
+     Que las imagenes se muestren cada 2 segundos.
      */
     func startImageTimer() {
         timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(changeImage), userInfo: nil, repeats: true)
-        }
-
+    }
+    /*
+     Función para cambiar las imágenes con el orden de nuestro array. Al finalizar se coloca una ultima imágen predeterminada.
+     */
     @objc func changeImage() {
-           // Cambia la imagen en changingImage según donde se encuentre el 'currentIndex'
-           changingImage.image = UIImage(named: shownImages[currentIndex])
-           currentIndex += 1
-           
-           // Verifica si ya llegamos al final del array de las imágenes que hay que mostrar
-           if currentIndex >= shownImages.count {
-               self.changingImage.image = UIImage(named: "ultima") // Muestra la imagen "ultima"
-               
-               // Detiene el temporizador
-               timer?.invalidate()
-               timer = nil // Nos aseguramos de que no se reinicie otra vez
-           }
-       }
+        if currentIndex < shownImages.count {
+            changingImage.image = UIImage(named: shownImages[currentIndex])
+            currentIndex += 1
+        } else {
+            changingImage.image = UIImage(named: "ultima")
+            timer?.invalidate()
+            timer = nil
+        }
+    }
+}
 
-       deinit {
-           // Invalidar el temporizador cuando la vista se acabe.
-           timer?.invalidate()
-       }
-   }

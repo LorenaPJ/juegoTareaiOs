@@ -212,13 +212,25 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sgj-cM-QkU">
+                                <rect key="frame" x="100" y="742" width="193" height="85"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <segue destination="gEP-k8-gUg" kind="presentation" id="gVi-5d-U71"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8Hv-5Q-nx2"/>
                         <color key="backgroundColor" red="0.94509804249999996" green="0.88235294819999999" blue="0.85490196939999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="8Hv-5Q-nx2" firstAttribute="bottom" secondItem="sgj-cM-QkU" secondAttribute="bottom" constant="15" id="9D8-3i-YvN"/>
+                            <constraint firstItem="sgj-cM-QkU" firstAttribute="top" secondItem="Fgf-RZ-bo7" secondAttribute="bottom" constant="100" id="G1w-iw-WGj"/>
                             <constraint firstItem="Fgf-RZ-bo7" firstAttribute="top" secondItem="8Hv-5Q-nx2" secondAttribute="top" constant="100" id="Guf-Mc-nEk"/>
                             <constraint firstItem="Fgf-RZ-bo7" firstAttribute="leading" secondItem="8Hv-5Q-nx2" secondAttribute="leading" constant="20" id="Yd1-bx-CxP"/>
                             <constraint firstItem="8Hv-5Q-nx2" firstAttribute="trailing" secondItem="Fgf-RZ-bo7" secondAttribute="trailing" constant="20" id="e8B-tp-zA1"/>
+                            <constraint firstItem="sgj-cM-QkU" firstAttribute="leading" secondItem="8Hv-5Q-nx2" secondAttribute="leading" constant="100" id="iuI-IF-08N"/>
+                            <constraint firstItem="8Hv-5Q-nx2" firstAttribute="trailing" secondItem="sgj-cM-QkU" secondAttribute="trailing" constant="100" id="nNS-J8-6qp"/>
                             <constraint firstItem="8Hv-5Q-nx2" firstAttribute="bottom" secondItem="Fgf-RZ-bo7" secondAttribute="bottom" constant="200" id="uQA-AQ-3Nf"/>
                         </constraints>
                     </view>
@@ -230,15 +242,27 @@
             </objects>
             <point key="canvasLocation" x="1838.9312977099237" y="-2.1126760563380285"/>
         </scene>
-        <!--View Controller-->
+        <!--High Scores View Controller-->
         <scene sceneID="eKf-Sf-0uL">
             <objects>
-                <viewController id="gEP-k8-gUg" sceneMemberID="viewController">
+                <viewController id="gEP-k8-gUg" customClass="HighScoresViewController" customModule="juegoTareaiOs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="n5k-Vu-3I0">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="MVM-XR-NyO">
+                                <rect key="frame" x="15" y="30" width="363" height="712"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="4Qx-gp-qQc"/>
                         <color key="backgroundColor" red="0.49019610879999997" green="0.7019608021" blue="0.65882354970000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="4Qx-gp-qQc" firstAttribute="bottom" secondItem="MVM-XR-NyO" secondAttribute="bottom" constant="100" id="HxV-5J-kF0"/>
+                            <constraint firstItem="MVM-XR-NyO" firstAttribute="top" secondItem="4Qx-gp-qQc" secondAttribute="top" constant="30" id="QcW-DW-6nJ"/>
+                            <constraint firstItem="4Qx-gp-qQc" firstAttribute="trailing" secondItem="MVM-XR-NyO" secondAttribute="trailing" constant="15" id="XSQ-OE-551"/>
+                            <constraint firstItem="MVM-XR-NyO" firstAttribute="leading" secondItem="4Qx-gp-qQc" secondAttribute="leading" constant="15" id="wpY-63-sv6"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gIr-ik-O7f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

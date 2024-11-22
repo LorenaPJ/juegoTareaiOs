@@ -17,7 +17,7 @@ class PhotoCell: UICollectionViewCell {
     override func awakeFromNib() {
             super.awakeFromNib()
             
-            // Asegúrate de que el botón esté encima de la imagen
+        
         CellButton.layer.zPosition = 1 // Esto asegura que el botón esté por encima de la imagen
         CellButton.isHidden = false // Puedes controlar si el botón está visible o no
         }
