@@ -8,9 +8,10 @@ import UIKit
 
 class SelectionPictures: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    //Nuestro collectionview
     @IBOutlet weak var ColorsCollectionV: UICollectionView!
     
-    
+    //Boton para siguiente pantalla
     @IBOutlet weak var localScoresButton: UIButton!
     
     
@@ -21,6 +22,7 @@ class SelectionPictures: UIViewController, UICollectionViewDataSource, UICollect
                   "naranja", "morado", "rosado",
                   "verdeclaro", "ultima"
     ]
+    
     // Array para guardar los botones presionados por el jugador
     var PressedButtons: [String] = []
     
@@ -51,7 +53,8 @@ class SelectionPictures: UIViewController, UICollectionViewDataSource, UICollect
         cell.CellimageV.image = UIImage(named: photos[indexPath.item])
         
         // Asignar el nombre de la imagen como el identificador del botón
-        cell.CellButton.setTitle(photos[indexPath.item], for: .normal) // Usamos el nombre de la imagen como el título
+        cell.CellButton.setTitle(photos[indexPath.item], for: .normal)
+        // Usamos el nombre de la imagen como el título para poder diferenciarlo
         
         // Añadir la acción del botón para saber cuál fue presionado
         cell.CellButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
@@ -79,7 +82,9 @@ class SelectionPictures: UIViewController, UICollectionViewDataSource, UICollect
         }
     }
     
-    // Método para comparar las selecciones del jugador con las imágenes mostradas
+    /*
+     Método para comparar las selecciones del jugador con las imágenes mostradas
+     */
     func checkAnswer(_ selectedButton: String) {
         
         // Compara la imagen presionada con la imagen correspondiente en shownImages
@@ -144,7 +149,7 @@ class SelectionPictures: UIViewController, UICollectionViewDataSource, UICollect
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFoYXZydmtobGJtc2xqZ21ia25yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDA3MjY5MTgsImV4cCI6MjAxNjMwMjkxOH0.Ta-_lXGGwSiUGh0VC8tAFcFQqsqAvB8vvXJjubeQkx8", forHTTPHeaderField: "Authorization")
-        request.setValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFoYXZydmtobGJtc2xqZ21ia25yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDA3MjY5MTgsImV4cCI6MjAxNjMwMjkxOH0.Ta-_lXGGwSiUGh0VC8tAFcFQqsqAvB8vvXJjubeQkx8", forHTTPHeaderField: "apikey") // Agregar apikey
+        request.setValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFoYXZydmtobGJtc2xqZ21ia25yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDA3MjY5MTgsImV4cCI6MjAxNjMwMjkxOH0.Ta-_lXGGwSiUGh0VC8tAFcFQqsqAvB8vvXJjubeQkx8", forHTTPHeaderField: "apikey")
 
         do {
             // Convertir los parámetros a JSON
@@ -184,7 +189,9 @@ class SelectionPictures: UIViewController, UICollectionViewDataSource, UICollect
 
 
     
-    // Guardar la puntuación en UserDefaults
+    /*
+     Metodo para guardar la puntuación en UserDefaults
+     */
     func saveScore(name: String, score: Int) {
         var scores = UserDefaults.standard.array(forKey: "scores") as? [[String: Any]] ?? []
         
@@ -207,45 +214,3 @@ class SelectionPictures: UIViewController, UICollectionViewDataSource, UICollect
         }
     }
 }
-
-
-
-        /*
-         // Subir la puntuación a una API
-         func uploadScoreToAPI(name: String, score: Int) {
-         // URL de la API
-         let url = URL(string: "https://miapi.com/submit-score")!
-         
-         // Crear el objeto con los datos del puntaje
-         let parameters = ["name": name, "score": score] as [String : Any]
-         
-         // Configurar la solicitud
-         var request = URLRequest(url: url)
-         request.httpMethod = "POST"
-         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-         
-         do {
-         // Convertir los parámetros a JSON
-         let jsonData = try JSONSerialization.data(withJSONObject: parameters, options: [])
-         request.httpBody = jsonData
-         
-         // Realizar la solicitud HTTP
-         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-         if let error = error {
-         print("Error al subir la puntuación: \(error.localizedDescription)")
-         return
-         }
-         if let data = data {
-         // Manejar la respuesta de la API
-         if let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: []) {
-         print("Respuesta de la API: \(jsonResponse)")
-         }
-         }
-         }
-         
-         // Iniciar la tarea
-         task.resume()
-         } catch {
-         print("Error al convertir parámetros a JSON: \(error.localizedDescription)")
-         }
-         }*/

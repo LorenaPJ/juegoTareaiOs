@@ -7,6 +7,9 @@
 import Foundation
 import UIKit
 
+/*
+ La clase para nuestra celda del collectionview
+ */
 class PhotoCell: UICollectionViewCell {
 
     //Imagen que tenemos en la celda.

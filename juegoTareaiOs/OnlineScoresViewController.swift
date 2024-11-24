@@ -9,6 +9,7 @@ import UIKit
 
 class OnlineScoresViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    //TableView de las puntuaciones
     @IBOutlet weak var OnlineScoresTableView: UITableView!
     
     // Array para los Scores
@@ -20,11 +21,13 @@ class OnlineScoresViewController: UIViewController, UITableViewDataSource, UITab
         OnlineScoresTableView.dataSource = self
         OnlineScoresTableView.delegate = self
         
-        // Cargar los puntajes al cargar la vista
+        // Cargar los puntajes
         fetchScoresFromAPI()
     }
     
-    // Obtener puntajes desde la API
+    /*
+     Esta función es para obtener puntajes desde la API
+     */
     func fetchScoresFromAPI() {
         guard let url = URL(string: "https://qhavrvkhlbmsljgmbknr.supabase.co/rest/v1/scores?select=*") else {
             print("URL inválida")
@@ -35,7 +38,7 @@ class OnlineScoresViewController: UIViewController, UITableViewDataSource, UITab
         request.httpMethod = "GET"
         request.setValue("Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFoYXZydmtobGJtc2xqZ21ia25yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDA3MjY5MTgsImV4cCI6MjAxNjMwMjkxOH0.Ta-_lXGGwSiUGh0VC8tAFcFQqsqAvB8vvXJjubeQkx8", forHTTPHeaderField: "Authorization")
         request.setValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFoYXZydmtobGJtc2xqZ21ia25yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDA3MjY5MTgsImV4cCI6MjAxNjMwMjkxOH0.Ta-_lXGGwSiUGh0VC8tAFcFQqsqAvB8vvXJjubeQkx8", forHTTPHeaderField: "apikey") // Agregar apikey
-        
+        //Aquí definimos comportamiento por si se reciben datos o no
         let task = URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
             if let error = error {
                 print("Error al obtener los puntajes: \(error.localizedDescription)")
@@ -80,8 +83,8 @@ class OnlineScoresViewController: UIViewController, UITableViewDataSource, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ScoreCell", for: indexPath)
         let score = scores[indexPath.row]
-        cell.textLabel?.text = "\(score.name): \(score.score)" // Asegúrate de asignar contenido
+        cell.textLabel?.text = "\(score.name): \(score.score)"
+        
         return cell
     }
 }
-
