@@ -10,9 +10,16 @@ class SelectionPictures: UIViewController, UICollectionViewDataSource, UICollect
     
     @IBOutlet weak var ColorsCollectionV: UICollectionView!
     
+    
+    @IBOutlet weak var localScoresButton: UIButton!
+    
+    
+    
     // Array de imágenes para el slideshow
-    var photos = [
-        "amarillo", "azul", "rojo", "azulclaro", "degradado", "verde", "naranja", "morado", "rosado", "verdeclaro", "ultima"
+    var photos = ["amarillo", "azul", "rojo",
+                  "azulclaro", "degradado", "verde",
+                  "naranja", "morado", "rosado",
+                  "verdeclaro", "ultima"
     ]
     // Array para guardar los botones presionados por el jugador
     var PressedButtons: [String] = []
@@ -23,7 +30,7 @@ class SelectionPictures: UIViewController, UICollectionViewDataSource, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Mostrar el array recibido para confirmación
+        // Confirmación de que el array viajó con exito.
         print("Imágenes recibidas desde gamescreen: \(shownImages)")
         
         ColorsCollectionV.dataSource = self
@@ -37,6 +44,7 @@ class SelectionPictures: UIViewController, UICollectionViewDataSource, UICollect
     
     // Configurar cada celda con una imagen y un botón
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
         
         // Asignar la imagen a la celda
@@ -53,6 +61,7 @@ class SelectionPictures: UIViewController, UICollectionViewDataSource, UICollect
     
     // Acción cuando se presiona un botón
     @objc func buttonTapped(_ sender: UIButton) {
+        
         // Usamos el título del botón (el nombre de la imagen) y lo agregamos a PressedButtons
         if let buttonTitle = sender.title(for: .normal) {
             // Verificar que el botón no haya sido presionado antes
@@ -72,6 +81,7 @@ class SelectionPictures: UIViewController, UICollectionViewDataSource, UICollect
     
     // Método para comparar las selecciones del jugador con las imágenes mostradas
     func checkAnswer(_ selectedButton: String) {
+        
         // Compara la imagen presionada con la imagen correspondiente en shownImages
         if PressedButtons.count <= shownImages.count {
             let index = PressedButtons.count - 1
@@ -89,12 +99,14 @@ class SelectionPictures: UIViewController, UICollectionViewDataSource, UICollect
             showFinalScore()
         }
     }
-    
+    /*
+     Nos muestra el puntaje final del jugador y le pide el nombre para guardarlo.
+     */
     func showFinalScore() {
         // Crear el UIAlertController para pedir el nombre
         let alert = UIAlertController(title: "Juego Terminado", message: "Tu puntaje final es \(score) de \(shownImages.count)", preferredStyle: .alert)
         
-        // Agregar el UITextField al UIAlertController
+        // Agregar el TextField
         alert.addTextField { (textField) in
             textField.placeholder = "Ingresa tu nombre"
         }
@@ -104,6 +116,7 @@ class SelectionPictures: UIViewController, UICollectionViewDataSource, UICollect
             if let playerName = alert?.textFields?.first?.text, !playerName.isEmpty {
                 // Guardar la puntuación localmente
                 self.saveScore(name: playerName, score: self.score)
+                self.navigateToScoreView()
                 
                 // Subir la puntuación a la API
                 self.uploadScoreToAPI(name: playerName, score: self.score)
@@ -115,19 +128,6 @@ class SelectionPictures: UIViewController, UICollectionViewDataSource, UICollect
         // Mostrar la alerta
         present(alert, animated: true, completion: nil)
     }
-    
-    // Guardar la puntuación en UserDefaults
-    func saveScore(name: String, score: Int) {
-        var scores = UserDefaults.standard.array(forKey: "scores") as? [[String: Any]] ?? []
-        
-        let scoreData: [String: Any] = ["name": name, "score": score]
-        scores.append(scoreData)
-        
-        UserDefaults.standard.setValue(scores, forKey: "scores")
-        print("Puntuación guardada localmente")
-        print(scores)
-    }
-    
     // Subir la puntuación a una API
     func uploadScoreToAPI(name: String, score: Int) {
         // URL de la API
@@ -164,6 +164,29 @@ class SelectionPictures: UIViewController, UICollectionViewDataSource, UICollect
             task.resume()
         } catch {
             print("Error al convertir parámetros a JSON: \(error.localizedDescription)")
+        }
+    }
+    
+    // Guardar la puntuación en UserDefaults
+    func saveScore(name: String, score: Int) {
+        var scores = UserDefaults.standard.array(forKey: "scores") as? [[String: Any]] ?? []
+        
+        let scoreData: [String: Any] = ["name": name, "score": score]
+        scores.append(scoreData)
+        
+        UserDefaults.standard.setValue(scores, forKey: "scores")
+        print("Puntuación guardada localmente")
+        print(scores)
+    }
+    
+    /*
+     Enviar información al TableView
+     */
+    func navigateToScoreView() {
+        // Instanciar el ScoreViewController desde el storyboard
+        if let scoreVC = storyboard?.instantiateViewController(withIdentifier: "HighScoresViewController") as? HighScoresViewController {
+            // Navegar a la nueva pantalla
+            navigationController?.pushViewController(scoreVC, animated: true)
         }
     }
 }

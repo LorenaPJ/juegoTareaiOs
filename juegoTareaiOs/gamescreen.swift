@@ -14,7 +14,7 @@ class gamescreen: UIViewController {
   
     
     @IBOutlet weak var changingImage: UIImageView!
-
+    //Array de todas las imágenes que maneja la aplicación.
     var imagenes = ["amarillo", "azul", "degradado",
                     "azulclaro", "morado", "naranja",
                     "verdeclaro", "rosado", "rojo",
@@ -44,10 +44,10 @@ class gamescreen: UIViewController {
             shownImages.append(imagenes[selectedIndex])
         }
         
-        print("Imágenes seleccionadas para el slideshow: \(shownImages)") //Comprobación de que se lleno el array.
+        print("Imágenes seleccionadas para el slideshow: \(shownImages)") //Comprobación de que se llenó el array.
     }
     /*
-     Que las imagenes se muestren cada 2 segundos.
+     Timer para que las imágenes se muestren cada 2 segundos.
      */
     func startImageTimer() {
         timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(changeImage), userInfo: nil, repeats: true)

@@ -9,9 +9,9 @@ import UIKit
 
 class PhotoCell: UICollectionViewCell {
 
-
+    //Imagen que tenemos en la celda.
     @IBOutlet weak var CellimageV: UIImageView!
-    
+    //Boton que tenemos en la celda.
     @IBOutlet weak var CellButton: UIButton!
     
     override func awakeFromNib() {
@@ -19,6 +19,6 @@ class PhotoCell: UICollectionViewCell {
             
         
         CellButton.layer.zPosition = 1 // Esto asegura que el botón esté por encima de la imagen
-        CellButton.isHidden = false // Puedes controlar si el botón está visible o no
+        CellButton.isHidden = false // Nos aseguramos que sea visible o no el boton
         }
 }
