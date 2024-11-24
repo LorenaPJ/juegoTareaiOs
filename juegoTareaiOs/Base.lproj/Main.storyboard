@@ -270,6 +270,9 @@
                                 <rect key="frame" x="100" y="767" width="193" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Online Scores"/>
+                                <connections>
+                                    <segue destination="Tob-Bh-LOi" kind="presentation" id="cDD-Cj-xKU"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4Qx-gp-qQc"/>
@@ -293,19 +296,19 @@
             </objects>
             <point key="canvasLocation" x="2624" y="-2"/>
         </scene>
-        <!--View Controller-->
+        <!--Online Scores View Controller-->
         <scene sceneID="yGb-Jk-oMw">
             <objects>
-                <viewController id="Tob-Bh-LOi" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnlineScoresViewController" id="Tob-Bh-LOi" customClass="OnlineScoresViewController" customModule="juegoTareaiOs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Lsw-QB-fWa">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qkC-UX-BMw">
-                                <rect key="frame" x="30" y="89" width="333" height="604"/>
+                                <rect key="frame" x="30" y="30" width="333" height="687"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="af6-69-1ZM">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScoreCell" id="af6-69-1ZM">
                                         <rect key="frame" x="0.0" y="50" width="333" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="af6-69-1ZM" id="Oh1-E4-TMb">
@@ -325,6 +328,9 @@
                             <constraint firstItem="qkC-UX-BMw" firstAttribute="leading" secondItem="sbJ-dB-dsT" secondAttribute="leading" constant="30" id="DG7-g2-cWF"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="OnlineScoresTableView" destination="qkC-UX-BMw" id="3yn-E8-me5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iIO-QR-RDc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

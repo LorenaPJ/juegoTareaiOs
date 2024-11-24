@@ -131,7 +131,10 @@ class SelectionPictures: UIViewController, UICollectionViewDataSource, UICollect
     // Subir la puntuación a una API
     func uploadScoreToAPI(name: String, score: Int) {
         // URL de la API
-        let url = URL(string: "https://miapi.com/submit-score")!
+        guard let url = URL(string: "https://qhavrvkhlbmsljgmbknr.supabase.co/rest/v1/scores") else {
+            print("URL inválida")
+            return
+        }
         
         // Crear el objeto con los datos del puntaje
         let parameters = ["name": name, "score": score] as [String : Any]
@@ -140,7 +143,9 @@ class SelectionPictures: UIViewController, UICollectionViewDataSource, UICollect
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
+        request.setValue("Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFoYXZydmtobGJtc2xqZ21ia25yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDA3MjY5MTgsImV4cCI6MjAxNjMwMjkxOH0.Ta-_lXGGwSiUGh0VC8tAFcFQqsqAvB8vvXJjubeQkx8", forHTTPHeaderField: "Authorization")
+        request.setValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFoYXZydmtobGJtc2xqZ21ia25yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDA3MjY5MTgsImV4cCI6MjAxNjMwMjkxOH0.Ta-_lXGGwSiUGh0VC8tAFcFQqsqAvB8vvXJjubeQkx8", forHTTPHeaderField: "apikey") // Agregar apikey
+
         do {
             // Convertir los parámetros a JSON
             let jsonData = try JSONSerialization.data(withJSONObject: parameters, options: [])
@@ -152,6 +157,16 @@ class SelectionPictures: UIViewController, UICollectionViewDataSource, UICollect
                     print("Error al subir la puntuación: \(error.localizedDescription)")
                     return
                 }
+                
+                if let httpResponse = response as? HTTPURLResponse {
+                    print("Código de estado: \(httpResponse.statusCode)")
+                    if httpResponse.statusCode == 201 {
+                        print("Puntuación subida correctamente")
+                    } else {
+                        print("Error al subir la puntuación, código de estado: \(httpResponse.statusCode)")
+                    }
+                }
+                
                 if let data = data {
                     // Manejar la respuesta de la API
                     if let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: []) {
@@ -166,6 +181,8 @@ class SelectionPictures: UIViewController, UICollectionViewDataSource, UICollect
             print("Error al convertir parámetros a JSON: \(error.localizedDescription)")
         }
     }
+
+
     
     // Guardar la puntuación en UserDefaults
     func saveScore(name: String, score: Int) {
