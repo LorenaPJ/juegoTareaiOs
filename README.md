@@ -18,6 +18,6 @@ local y se podrá consultar una lista de puntuaciones guardadas online.
   - UserDefaults.
   - CollectionView.
   - TableView.
-  - API de puntuaciones; proporcionada al asignar la tarea.
+  - API de puntuaciones; suministrada al asignar la tarea.
 
 ### Script en **inglés** y comentarios en **español**.
